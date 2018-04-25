@@ -28,6 +28,8 @@
         self.backgroundColor = [UIColor whiteColor];
         _progressWidth = 10.f;
         self.progressViewType = LFProgressViewTypeHorizontal;
+        [self.layer addSublayer:self.backGroundLayer];
+
     }
     return self;
 }
@@ -87,14 +89,12 @@
         self.progressLayer.path = path.CGPath;
         gradientLayer.mask = self.progressLayer;
         self.backGroundLayer.path = path.CGPath;
-        [self.layer addSublayer:self.backGroundLayer];
         [self.layer addSublayer:gradientLayer];
         
     } else {
         UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.LF_width/2, self.LF_height/2) radius:self.LF_width / 2 - _progressWidth/2  startAngle:-M_PI_2 endAngle:-M_PI_2 + M_PI * 2 clockwise:YES];
         self.progressLayer.path = path.CGPath;
         self.backGroundLayer.path = path.CGPath;
-        [self.layer addSublayer:self.backGroundLayer];
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
         gradientLayer.frame = self.bounds;
         ///左上角
